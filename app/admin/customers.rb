@@ -14,5 +14,19 @@ ActiveAdmin.register Customer do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
-end
+  show do
+    attributes_table do
+      row :full_name
+      row :phone_numbera
+      row :email_address
+      row :notes
+      row :image do |customer|
+        if customer.image.attached?
+          image_tag customer.image.variant(resize_to_limit: [100, 100])
+        else
+          "No image uploaded"
+        end
+      end
+    end
+  end
+end  
